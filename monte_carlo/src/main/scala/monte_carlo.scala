@@ -117,7 +117,6 @@ object LiquidityRiskMonteCarlo extends java.io.Serializable {
     // (Http(resultDataPoints OK as.String))                           
 
     sc.stop()
-    System.exit()
 
   }
 
