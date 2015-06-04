@@ -21,7 +21,7 @@ object LiquidityRiskMonteCarloStreaming extends java.io.Serializable {
 
   val conf = new SparkConf()
   val sc = new SparkContext(conf)
-  val TRIALS = 1000
+  val TRIALS = 100
 
   val datagridURL = "http://ec2-54-68-56-201.us-west-2.compute.amazonaws.com:8080/rest/default/"
 
@@ -78,15 +78,6 @@ object LiquidityRiskMonteCarloStreaming extends java.io.Serializable {
     combined
   }
 
-   // Get the ticker symbols from the DataGrid
-
-  def tickerSymbolsToSimulate: List[String] = {
-    val req = url(datagridURL + "stocklist").as_!("datagrid", "RedHatDemo$2")
-    val result = (Http(req OK as.String))
-    result().split(",").toList
-  }
-
-
   def runSimulation(parameters: Submission) {
   
     val tickers = parameters.tickers
@@ -109,12 +100,17 @@ object LiquidityRiskMonteCarloStreaming extends java.io.Serializable {
     // // Again, this is why we'd split on trial instead of stock symbol
     // // outside of a demo implementation
 
-    // val combinedLVaRs = trialResults.map( stock => stock.sorted ).reduce( (x,y) => reduceFn(x,y))
+    val combinedLVaRs = trialResults.map( stock => stock.sorted ).reduce( (x,y) => reduceFn(x,y))
 
     val liquidityReq = url(datagridURL + uuid + "_liquidityrisk").PUT
                           .as_!("datagrid", "RedHatDemo$2")
                           .setBody(lvarOfPortfolio.toString)
     (Http(liquidityReq OK as.String))                            
+
+    val dataPoints = url(datagridURL + uuid + "_datapoints").PUT
+                          .as_!("datagrid", "RedHatDemo$2")
+                          .setBody(combinedLVaRs.mkString(","))
+    (Http(dataPoints OK as.String))
 
   }
 
