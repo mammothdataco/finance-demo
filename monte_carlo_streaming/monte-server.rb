@@ -4,10 +4,10 @@ require 'bigdecimal'
 require 'csv'
 require 'open-uri'
 require 'nokogiri'
-require 'poseidon'
+#require 'poseidon'
 require 'pry'
 
-$kafka = Poseidon::Producer.new([ENV['KAFKA_HOST']], "finance-demo")
+#$kafka = Poseidon::Producer.new([ENV['KAFKA_HOST']], "finance-demo")
 
 class DataGrid
  
@@ -96,7 +96,7 @@ post '/spark' do
   puts JSON.parse(params['submission'])
    submission = params['submission']
    msg = Poseidon::MessageToSend.new("submissions", submission)
-   $kafka.send_messages([msg])
+  # $kafka.send_messages([msg])
 #   {status: 'progress'}.to_json
   params['submission']
 end
@@ -129,4 +129,21 @@ get '/name/:ticker' do |ticker|
   $grid.get(key: "#{ticker}_company")
 end
 
+get '/datapoints/:uuid' do |uuid|
+  datapoints = $grid.get(key: "#{uuid}_datapoints")
+  points = datapoints.split(',')
+  if points[0][0] == '<'
+    404
+  else
+    points.map(&:to_f).to_json
+  end
+end
 
+get '/lvar/:uuid' do |uuid|
+  lvar = $grid.get(key: "#{uuid}_liquidityrisk")
+  if lvar[0] == '<'
+    404
+  else
+    { lvar: lvar.to_f } .to_json
+  end
+end
