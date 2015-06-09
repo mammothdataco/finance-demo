@@ -138,7 +138,7 @@ $(window).on("load", function() {
   function stockList() {
     stocks = [];
     $("#stocks tr.stock").each(function (idx, stock) {
-        stocks.push({ "symbol": stock.id, "position": $(".position",this).text()});
+        stocks.push({ "symbol": stock.id, "position": parseInt($(".position",this).text())});
     });
     return stocks;
   }

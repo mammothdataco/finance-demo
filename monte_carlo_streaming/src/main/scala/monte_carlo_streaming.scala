@@ -19,9 +19,9 @@ import Array._
 
 object LiquidityRiskMonteCarloStreaming extends java.io.Serializable {
 
-  val conf = new SparkConf()
+  val conf = new SparkConf().setAppName("Streaming Monte Carlo").setMaster("local[4]")
   val sc = new SparkContext(conf)
-  val TRIALS = 100
+  val TRIALS = 1000
 
   val datagridURL = "http://ec2-54-68-56-201.us-west-2.compute.amazonaws.com:8080/rest/default/"
 
@@ -117,8 +117,10 @@ object LiquidityRiskMonteCarloStreaming extends java.io.Serializable {
    def main(args: Array[String]) {
     
     val ssc = new StreamingContext(sc, Seconds(1))
+    //val lines = KafkaUtils.createStream(ssc, "localhost", "0", Map("submissions" ->  1))
     val lines = KafkaUtils.createStream(ssc, "localhost", "0", Map("submissions" ->  1)).map(_._2)
-    val test = lines.foreachRDD(x => x.foreach(json => {  
+    println(lines)
+     val test = lines.foreachRDD(x => x.foreach(json => {  
         runSimulation(JsonMethods.parse(json).extract[Submission])
       }))
     ssc.start()

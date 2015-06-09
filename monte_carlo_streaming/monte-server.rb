@@ -4,7 +4,10 @@ require 'bigdecimal'
 require 'csv'
 require 'open-uri'
 require 'nokogiri'
-#require 'poseidon'
+require 'poseidon'
+require 'pry'
+
+$kafka = Poseidon::Producer.new([ENV['KAFKA_HOST']], "finance-demo")
 
 class DataGrid
  
@@ -13,7 +16,6 @@ class DataGrid
     @url = "http://ec2-54-68-56-201.us-west-2.compute.amazonaws.com:8080/rest/default/{{replace}}"
     @read_curl = "curl -H '#{@auth}' -X GET #{@url}"
     @write_curl = "curl -H '#{@auth}' -X PUT #{@url} -H 'Content-type: text/plain' -d '{{value}}'"
-  #  @kafka = Poseidon::Producer.new([ENV['KAFKA_HOST']], "finance-demo")
   end
 
   def get(key:)
@@ -92,6 +94,10 @@ $grid = DataGrid.new
 
 post '/spark' do
   puts JSON.parse(params['submission'])
+   submission = params['submission']
+   msg = Poseidon::MessageToSend.new("submissions", submission)
+   $kafka.send_messages([msg])
+#   {status: 'progress'}.to_json
   params['submission']
 end
 
