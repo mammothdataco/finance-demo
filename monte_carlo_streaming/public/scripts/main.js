@@ -8,7 +8,6 @@ $(window).bind("load", function() {
     })
   });
 
-
   function get_name(ticker) {
     return $.ajax({
       url: 'name/' + ticker,

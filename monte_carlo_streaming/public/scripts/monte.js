@@ -102,10 +102,6 @@ $(window).on("load", function() {
       $("#symbol").text("");
       get_name(ticker);
       price_and_position(ticker);  
-      $(".slider").on('input', function(vol){
-    $(this).next(".position").text($(this).val());
-  });
-
     })
       .fail(function(){
         $("#symbol").css('background', 'red');
@@ -227,7 +223,8 @@ $(window).on("load", function() {
     yAxis = d3.svg.axis()
       .scale(yScale)
       .orient('left')
-      .outerTickSize(1);
+      .outerTickSize(1)
+      .ticks(6, "s");
 
     svg = d3.select("section.results").append("svg")
         .attr("width", width + margin.left + margin.right)
@@ -281,7 +278,9 @@ $(window).on("load", function() {
         $.when(lvar_req).done( function () { lvar = svg.selectAll("circle")
                   .data(dataset, function(d) {return d[1]})
                   .select(function(d, i) { return  d[1]== lvar_loss ? this: null; })
-                  .attr({"r": function(d) {return 5;}}).style('fill', 'red')});
+                  .attr({"r": function(d) {return 5;}}).style('fill', 'red');
+          $("#lvar").text("LVaR (95%) is $"+ lvar_loss);
+        });
        
       }
     }, 10);
