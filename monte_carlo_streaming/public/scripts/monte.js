@@ -204,16 +204,19 @@ $(window).on("load", function() {
   }
 
   function getLVaR() {
-    return $.ajax({
+    var lvar = 0.0;
+    req = $.ajax({
           url: '/lvar/' + uuid,
           dataType: 'json',
-          type: 'get',
-          success: function(LVaR){ return LVaR; }});
+          type: 'get' ,
+          success: function(res) { lvar = res['lvar'] }});
+    
+    return lvar;
   }
 
   function generateGraph(data) {
 
-    var lvar_loss = getLVaR();
+    var lvar_loss = 0 - getLVaR();
 
     var initialDataset = shuffle(data);
   
