@@ -229,7 +229,7 @@ $(window).on("load", function() {
       .outerTickSize(1)
       .ticks(6, "s");
 
-    svg = d3.select("section.results h2").append("svg")
+    svg = d3.select("#simulation-graph").append("svg")
         .attr("width", width + margin.left + margin.right)
         .attr("height", height + margin.top + margin.bottom)
       .append("g")
