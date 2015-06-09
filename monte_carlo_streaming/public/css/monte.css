@@ -1,0 +1,72 @@
+html, body, h1, h2, h3, h4, h5, h6, p, ol, ul, li, dl,
+dt, dd, blockquote, address{
+    margin: 0;
+    padding: 0;
+    background-color: #eeeeee;
+    font-family: "futura-pt","Futura Std",sans-serif;
+}
+
+.container {
+  display: -webkit-flex;
+  display: flex;
+  -webkit-flex-direction: column;
+  flex-direction: column;
+  width: 100%;
+}
+
+
+.title {
+  padding-top: 1em;
+  padding-bottom: 1em;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 2.5em;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  text-align: center;
+  background-color: rgb(247, 149, 34);
+  color: white;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-flex-direction: row;
+  flex-direction: row;
+  -webkit-align-items: center;
+  align-items: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+}
+
+.title p {
+  background-color: rgb(247, 149, 34);
+}
+
+section {
+  padding: 2em;
+  background-color: #efefef;
+  color: #111111;
+
+  display: -webkit-flex;
+  display: flex;
+  -webkit-flex-direction: column;
+  flex-direction: column;
+  -webkit-align-items: center;
+  align-items: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+}
+
+section.results {
+  display: none;
+}
+
+.text-block {
+  padding: 1em;
+}
+
+#mc_embed_signup .button {
+    background-color: #229BD7;
+}
+
+#mc_embed_signup .button:hover {
+    background-color: #33ACE8;
+}

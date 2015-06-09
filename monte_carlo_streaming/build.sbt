@@ -8,7 +8,7 @@ scalaVersion := "2.10.3"
 libraryDependencies ++= Seq(
 	"org.apache.spark" % "spark-core_2.10" % "1.2.0" % "provided",
   "net.databinder.dispatch" %% "dispatch-core" % "0.11.2",
-  "org.apache.spark" % "spark-streaming_2.10" % "1.2.0" % provided,
+  "org.apache.spark" % "spark-streaming_2.10" % "1.2.0" % "provided",
   "org.apache.spark" % "spark-streaming-kafka_2.10" % "1.2.0",
   "org.json4s" %% "json4s-native" % "3.2.10"
 )

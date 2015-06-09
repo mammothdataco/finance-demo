@@ -1,0 +1,131 @@
+<html>
+  <head>
+    <title>Monte Carlo Streaming</title>
+
+    <link rel="stylesheet" href="css/monte.css" type="text/css" media="all">
+    <script src="scripts/jquery-2.1.3.js"></script>
+    <script src="http://d3js.org/d3.v3.min.js"></script>
+
+<script src="scripts/monte.js"></script>
+  </head>
+  <body>
+    <div class="container">
+      <div class="title">
+        <div><p>mammoth data stream all the things</p></div>
+      </div>
+      <section class="submission">
+         <table id="stocks">
+    <thead>
+      <tr>
+        <th>Company Name</th>
+        <th>Stock Ticker</th>
+        <th>Stock Price</th>
+        <th>Position (shares)</th>
+      </tr>
+    </thead>
+    <tbody>
+    <tr id="RHT" class="stock">
+      <td>RedHat</td>
+      <td class="ticker">RHT</td>
+      <td class="stock">0.00</td>
+      <td class="position-holder">
+      <input type=range min=0 max=1000 value=200 class="slider" step=50>
+      <output class="position">50</output>
+      </td>
+    </tr>
+    <tr id="HDP" class="stock">
+      <td>Hortonworks</td>
+      <td class="ticker">HDP</td>
+      <td class="stock">0.00</td>
+      <td class="position-holder">
+      <input type=range min=0 max=1000 value=200 class="slider" step=50>
+      <output class="position">50</output>
+      </td>
+    </tr>
+    <tr id="GOOG" class="stock">
+      <td>Google</td>
+      <td class="ticker">GOOG</td>
+      <td class="stock">0.0</td>
+      <td class="position-holder">
+      <input type=range min=0 max=1000 value=200 class="slider" step=50>
+      <output class="position">50</output>
+      </td>
+    </tr>
+
+    <tr id="GE" class="stock">
+      <td>General Electric</td>
+      <td class="ticker">GE</td>
+      <td class="stock">0.0</td>
+      <td class="position-holder">
+      <input type=range min=0 max=1000 value=200 class="slider" step=50>
+      <output class="position">50</output>
+      </td>
+    </tr>
+
+     <tr id="TWTR" class="stock">
+      <td>Twitter</td>
+      <td class="ticker">TWTR</td>
+      <td class="stock">0.0</td>
+      <td class="position-holder">
+      <input type=range min=0 max=1000 value=200 class="slider" step=50>
+      <output class="position">50</output>
+      </td>
+    </tr>
+
+
+     <tr id="AMZN" class="stock">
+      <td>Amazon</td>
+      <td class="ticker">AMZN</td>
+      <td class="stock">0.0</td>
+      <td class="position-holder">
+      <input type=range min=0 max=1000 value=200 class="slider" step=50>
+      <output class="position">50</output>
+      </td>
+    </tr>
+
+
+     <tr id="YHOO" class="stock">
+      <td>Yahoo</td>
+      <td class="ticker">YHOO</td>
+      <td class="stock">0.0</td>
+      <td class="position-holder">
+      <input type=range min=0 max=1000 value=200 class="slider" step=50>
+      <output class="position">50</output>
+      </td>
+    </tr>
+
+    <tr>
+      <td></td>
+      
+      <td id="risk"></td>
+    </tr>
+
+    <tr>
+    <td>Add stock from ticker symbol</td>
+    <td id="symbol" contentEditable></td>
+    <td><button id="add">Add</button></td>
+    </tr>
+    </tbody>
+  </table>
+      <label for='email'>Email</label>
+      <input type='email' name='email' pattern="@">
+      
+      <label for='name'>Name</label>
+      <input type='text' name='name' pattern="@">
+      
+      <label for='position'>Position</label>
+      <input type='text' name='position' pattern="@">
+      
+      <label for='phone'>Phone</label>
+      <input type='text' name='phone' pattern="@">
+
+      <button id="liquidity">Run LVaR simulation</button>
+
+      </section>
+      <section class="results">
+        <h2>Thanks!</h2>
+      </section>
+    </div>
+    hi.
+  </body>
+</html>
