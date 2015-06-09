@@ -226,7 +226,7 @@ $(window).on("load", function() {
       .outerTickSize(1)
       .ticks(6, "s");
 
-    svg = d3.select("section.results").append("svg")
+    svg = d3.select("section.results h2").append("svg")
         .attr("width", width + margin.left + margin.right)
         .attr("height", height + margin.top + margin.bottom)
       .append("g")
@@ -279,7 +279,7 @@ $(window).on("load", function() {
                   .data(dataset, function(d) {return d[1]})
                   .select(function(d, i) { return  d[1]== lvar_loss ? this: null; })
                   .attr({"r": function(d) {return 5;}}).style('fill', 'red');
-          $("#lvar").text("LVaR (95%) is $"+ lvar_loss);
+          $("#lvar").text("LVaR (95%) is $"+ Math.abs(lvar_loss);
         });
        
       }
