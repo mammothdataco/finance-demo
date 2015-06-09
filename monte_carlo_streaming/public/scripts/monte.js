@@ -19,12 +19,13 @@ $(window).on("load", function() {
   var xAxis = d3.svg.axis()
     .scale(xScale)
     .orient('bottom')
-    .outerTickSize(1);
+    .outerTickSize(1)
+    .ticks(5, "s");
 
   var yAxis = d3.svg.axis()
     .scale(yScale)
     .orient('left')
-    .outerTickSize(0.01);
+    .outerTickSize(1);
 
   var uuid = generateUUID();
 
