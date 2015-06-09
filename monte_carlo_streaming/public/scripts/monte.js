@@ -102,6 +102,10 @@ $(window).on("load", function() {
       $("#symbol").text("");
       get_name(ticker);
       price_and_position(ticker);  
+      $(".slider").on('input', function(vol){
+    $(this).next(".position").text($(this).val());
+  });
+
     })
       .fail(function(){
         $("#symbol").css('background', 'red');
