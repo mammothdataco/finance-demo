@@ -5,6 +5,7 @@
     <link rel="stylesheet" href="css/monte.css" type="text/css" media="all">
     <script src="scripts/jquery-2.1.3.js"></script>
     <script src="http://d3js.org/d3.v3.min.js"></script>
+    <script src="http://parsleyjs.org/dist/parsley.min.js"></script>
 
 <script src="scripts/monte.js"></script>
   </head>
@@ -107,20 +108,25 @@
     </tr>
     </tbody>
   </table>
+      <form id="contacts">
       <label for='email'>Email</label>
-      <input type='email' name='email' pattern="@">
+      <input type='email' name='email' required>
       
       <label for='name'>Name</label>
-      <input type='text' name='name' pattern="@">
+      <input type='text' name='name' required>
       
       <label for='position'>Position</label>
-      <input type='text' name='position' pattern="@">
+      <input type='text' name='position'>
+
+      <label for='company'>Company</label>
+      <input type='text' name='company' required>
       
       <label for='phone'>Phone</label>
-      <input type='text' name='phone' pattern="@">
+      <input type='text' name='phone' pattern="^[\d\+\-\.\(\)\/\s]*$" required>
 
+      </form>
+      
       <button id="liquidity">Run LVaR simulation</button>
-
       </section>
       <section class="results">
         <h2>Generating Simulation...</h2>

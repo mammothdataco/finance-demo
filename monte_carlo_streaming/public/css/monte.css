@@ -40,6 +40,21 @@ dt, dd, blockquote, address{
   background-color: rgb(247, 149, 34);
 }
 
+form {
+  padding: 2em;
+  background-color: #efefef;
+  color: #111111;
+
+  display: -webkit-flex;
+  display: flex;
+  -webkit-flex-direction: column;
+  flex-direction: column;
+  -webkit-align-items: center;
+  align-items: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+}
+
 section {
   padding: 2em;
   background-color: #efefef;
@@ -54,6 +69,7 @@ section {
   -webkit-justify-content: center;
   justify-content: center;
 }
+
 
 section.results {
   display: none;

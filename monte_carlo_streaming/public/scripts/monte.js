@@ -44,7 +44,10 @@ $(window).on("load", function() {
   });
 
   $("#liquidity").on('click', function() {
-      
+      var form = $("#contacts").parsley();
+      form.validate();
+      if (!form.isValid())
+        return;
       $(".submission").hide();
       $(".results").show();
       runSpark = $.ajax({
@@ -163,7 +166,9 @@ $(window).on("load", function() {
   }
 
   function getContacts() {
-    return "";
+    contacts = {};
+    $("#contacts").serializeArray().map(function(item) {contacts[item.name] = item.value})
+    return contacts;
   }
 
   function update() {
