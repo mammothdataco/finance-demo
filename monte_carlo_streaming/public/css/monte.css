@@ -3,7 +3,7 @@ dt, dd, blockquote, address{
     margin: 0;
     padding: 0;
     background-color: #eeeeee;
-    font-family: "futura-pt","Futura Std",sans-serif;
+    font-family: "futura-pt","Futura",sans-serif;
 }
 
 .container {
