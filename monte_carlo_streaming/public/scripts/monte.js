@@ -40,7 +40,7 @@ $(window).on("load", function() {
   });
 
   $(".slider").on('input', function(vol){
-    $(this).next(".position").text($(this).val());
+    $(this).parent().parent().children(".position").first().text($(this).val());
   });
 
   $("#liquidity").on('click', function() {
@@ -100,14 +100,14 @@ $(window).on("load", function() {
     });
 
     $.when(importData).done(function(){
-      newRow = "<tr class='stock' id='"+ ticker + "'><td class='company'></td><td class='ticker'>"+ticker+"</td><td class='stock'></td><td class='position-holder'><input type=range min=0 max=1000 value=200 class='slider' step=50><output class='position'>50</output></td></tr>"
+      newRow = "<tr class='stock' id='"+ ticker + "'><td class='company'></td><td class='ticker'>"+ticker+"</td><td class='stock'></td><td class='position-holder'><input type=range min=0 max=1000 value=200 class='slider' step=50></td><td class='position'>50</td></tr>"
 
-      $("#stocks tr.stock").last().after(newRow);
+      var newElem = $("#stocks tr.stock").last().after(newRow);
       $("#symbol").text("");
       get_name(ticker);
       $(".slider").on('input', function(vol){
-    $(this).next(".position").text($(this).val());
-  });
+        $(this).parent().parent().children(".position").first().text($(this).val());
+      });
       price_and_position(ticker);  
     })
       .fail(function(){
