@@ -36,10 +36,17 @@ dt, dd, blockquote, address{
   justify-content: center;
 }
 
+@media (max-width: 500px) {
+.logos {
+  display: none !important;
+  }
+}
+
 .logos {
   background-color: #efefef;
   padding-bottom: 0.5em;
   color: white;
+  width: 120%;
   display: -webkit-flex;
   display: flex;
   -webkit-flex-direction: row;
