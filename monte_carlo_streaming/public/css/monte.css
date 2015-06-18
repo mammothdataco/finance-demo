@@ -46,7 +46,7 @@ dt, dd, blockquote, address{
   background-color: #efefef;
   padding-bottom: 0.5em;
   color: white;
-  width: 120%;
+  width: 100%;
   display: -webkit-flex;
   display: flex;
   -webkit-flex-direction: row;

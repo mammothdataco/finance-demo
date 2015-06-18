@@ -4,10 +4,10 @@ require 'bigdecimal'
 require 'csv'
 require 'open-uri'
 require 'nokogiri'
-#require 'poseidon'
+require 'poseidon'
 require 'pry'
 
-#$kafka = Poseidon::Producer.new([ENV['KAFKA_HOST']], "finance-demo")
+$kafka = Poseidon::Producer.new([ENV['KAFKA_HOST']], "finance-demo")
 
 class DataGrid
  
@@ -96,7 +96,7 @@ post '/spark' do
   puts JSON.parse(params['submission'])
    submission = params['submission']
    msg = Poseidon::MessageToSend.new("submissions", submission)
- #  $kafka.send_messages([msg])
+   $kafka.send_messages([msg])
 #   {status: 'progress'}.to_json
   params['submission']
 end
