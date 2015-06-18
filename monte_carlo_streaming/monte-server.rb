@@ -92,6 +92,10 @@ $grid = DataGrid.new
 #   {status: 'progress'}.to_json
 # end
 
+get '/' do
+ redirect '/streaming.html'
+end
+
 post '/spark' do
   puts JSON.parse(params['submission'])
    submission = params['submission']
