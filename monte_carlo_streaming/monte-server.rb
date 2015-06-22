@@ -148,6 +148,6 @@ get '/lvar/:uuid' do |uuid|
   if lvar[0] == '<'
     404
   else
-    { lvar: lvar.to_f.round(2) } .to_json
+    { lvar: lvar.to_f } .to_json
   end
 end
