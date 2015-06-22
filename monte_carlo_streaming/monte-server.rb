@@ -98,7 +98,7 @@ end
 
 post '/spark' do
   puts JSON.parse(params['submission'])
-   submission = params['submission']
+   submission = JSON.parse(params['submission'])
    msg = Poseidon::MessageToSend.new("submissions", submission)
    $kafka.send_messages([msg])
 #   {status: 'progress'}.to_json
