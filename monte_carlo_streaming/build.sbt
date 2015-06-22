@@ -17,5 +17,10 @@ assemblySettings
 
 jarName in assembly := "liquidity-monte-carlo-streaming.jar"
 
-assemblyOption in assembly := (assemblyOption in assembly).value.copy(includeScala = false)
 
+assemblyMergeStrategy in assembly := {
+  case PathList("org", "apache", "spark", "unused", "UnusedStubClass.class") => MergeStrategy.discard
+  case x =>
+    val oldStrategy = (assemblyMergeStrategy in assembly).value
+    oldStrategy(x)
+}
