@@ -195,10 +195,12 @@ input[type=range]:focus::-ms-fill-upper {
   padding-bottom: 0.2em;
 }
 
-#lvar {
-
-  padding: 2em;
-  
-
+section .results h2 {
+  text-align: center;
 }
 
+#lvar {
+  padding: 2em;
+  font-size: 2em;
+  text-align: center;
+}
