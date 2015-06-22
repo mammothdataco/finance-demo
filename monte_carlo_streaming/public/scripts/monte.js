@@ -288,7 +288,7 @@ $(window).on("load", function() {
                   .data(dataset, function(d) {return d[1]})
                   .select(function(d, i) { return  d[1]== lvar_loss ? this: null; })
                   .attr({"r": function(d) {return 5;}}).style('fill', 'red');
-          $("#lvar").text("LVaR (95%) is $"+ Math.abs(lvar_loss.toFixed(2)));
+          $("#lvar").text("LVaR (95%) is $"+ Math.abs(lvar_loss.toFixed(3)));
         });
        
       }
