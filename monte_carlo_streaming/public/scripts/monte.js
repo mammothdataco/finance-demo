@@ -69,7 +69,7 @@ $(window).on("load", function() {
           error: function() { setTimeout(pollInterval, 3000)},
           success: function(data){ generateGraph(data); }
       });}
-  });
+  })});
 
   $(".position").on('input', function(evt){
     ticker =$(evt.target).parent().attr('id')
