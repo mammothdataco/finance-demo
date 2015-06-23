@@ -61,19 +61,14 @@ $(window).on("load", function() {
       console.log("and we're back.");
       console.log(runSpark);
 
-      var pollInterval = setInterval(function() {
+      var pollInterval = function() {
          $.ajax({
           url: '/datapoints/' + uuid,
           dataType: 'json',
           type: 'get',
-          success: function(data){ clearInterval(pollInterval); generateGraph(data); }});
-      }, 300);
-
-      // Set up interval for scanning datagrid for changes
-      // set dataset and lvar
-      // then generate Graph
-      // generateGraph();
-      //
+          error: function() { setTimeout(pollInterval, 3000)},
+          success: function(data){ generateGraph(data); }}),
+      }
     });
   });
 
