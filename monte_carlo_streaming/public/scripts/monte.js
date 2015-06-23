@@ -67,9 +67,8 @@ $(window).on("load", function() {
           dataType: 'json',
           type: 'get',
           error: function() { setTimeout(pollInterval, 3000)},
-          success: function(data){ generateGraph(data); }}),
-      }
-    });
+          success: function(data){ generateGraph(data); }
+      });
   });
 
   $(".position").on('input', function(evt){
