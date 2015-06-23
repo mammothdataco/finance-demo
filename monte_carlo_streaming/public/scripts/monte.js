@@ -66,7 +66,7 @@ $(window).on("load", function() {
           url: '/datapoints/' + uuid,
           dataType: 'json',
           type: 'get',
-          error: function() { setTimeout(pollInterval, 3000)},
+          error: function() { console.log("and waiting…") ; setTimeout(pollInterval, 3000)},
           success: function(data){ generateGraph(data); }
       });}
   })});
