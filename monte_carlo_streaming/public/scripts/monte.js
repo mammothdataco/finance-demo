@@ -1,5 +1,20 @@
 $(window).on("load", function() {
 
+  update_positions();
+  update_total();
+
+  function update_total() {
+    total = 0.00;
+    $("#stocks tr.stock").each(function (idx, stock) {
+        var price = filterFloat($("td.stock", this).text());
+        var position = filterFloat($(".position",this).text());
+        total += price * parseFloat(position);
+    });
+    $("#total-position").text(total.toFixed(2));
+  }
+
+  function update_positions() {}
+
   var svg;
   var dataset = [];
 
@@ -36,11 +51,18 @@ $(window).on("load", function() {
   success: function(data) {
     data.forEach(function (stock) {
       price_and_position(stock);
+      console.log("here" + stock);
+      update_total();
+
     })}
+
   });
+
+
 
   $(".slider").on('input', function(vol){
     $(this).parent().parent().children(".position").first().text($(this).val());
+    update_total();
   });
 
   $("#liquidity").on('click', function() {
@@ -69,6 +91,7 @@ $(window).on("load", function() {
           error: function() { console.log("and waiting…") ; setTimeout(pollInterval, 3000)},
           success: function(data){ generateGraph(data); }
       });}
+      pollInterval();
   })});
 
   $(".position").on('input', function(evt){
@@ -94,7 +117,7 @@ $(window).on("load", function() {
     });
 
     $.when(importData).done(function(){
-      newRow = "<tr class='stock' id='"+ ticker + "'><td class='company'></td><td class='ticker'>"+ticker+"</td><td class='stock'></td><td class='position-holder'><input type=range min=0 max=1000 value=200 class='slider' step=50></td><td class='position'>50</td></tr>"
+      newRow = "<tr class='stock' id='"+ ticker + "'><td class='company'></td><td class='ticker'>"+ticker+"</td><td class='stock'></td><td class='position-holder'><input type=range min=0 max=1000 value=0 class='slider' step=0></td><td class='position'>0</td></tr>"
 
       var newElem = $("#stocks tr.stock").last().after(newRow);
       $("#symbol").text("");
@@ -124,7 +147,7 @@ $(window).on("load", function() {
       type: 'get',
       success: function(data) {
         console.log(data);
-        $("#" + ticker + " .stock").text(data);
+        $("#" + ticker + " .stock").text(filterFloat(data).toFixed(2));
       }});
 
       $.ajax({
