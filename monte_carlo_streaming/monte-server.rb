@@ -12,8 +12,8 @@ $kafka = Poseidon::Producer.new([ENV['KAFKA_HOST']], "finance-demo")
 class DataGrid
  
   def initialize
-    @auth = 'Authorization: Basic ZGF0YWdyaWQ6UmVkSGF0RGVtbyQy'
-    @url = "http://ec2-54-68-56-201.us-west-2.compute.amazonaws.com:8080/rest/default/{{replace}}"
+    @auth = ENV['DATAGRID_AUTH']
+    @url = "#{ENV['DATAGRID_HOST']}/rest/default/{{replace}}"
     @read_curl = "curl -H '#{@auth}' -X GET #{@url}"
     @write_curl = "curl -H '#{@auth}' -X PUT #{@url} -H 'Content-type: text/plain' -d '{{value}}'"
   end
