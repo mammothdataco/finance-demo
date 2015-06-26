@@ -31,11 +31,13 @@ class DataGrid
 
   def import(ticker:)
     name = ticker_to_name(ticker: ticker)
-    today = "&d=3&e=06&f=2015"
-    yahoo_url = "http://ichart.finance.yahoo.com/table.csv?s=#{ticker}#{today}&g=d&a=3&b=12&c=2005&ignore=.csv"
+    today = "&d=6&e=25&f=2015"
+    yahoo_url = "http://ichart.finance.yahoo.com/table.csv?s=#{ticker}"
+    #yahoo_url = "http://ichart.finance.yahoo.com/table.csv?s=#{ticker}#{today}&g=d&a=3&b=12&c=2005&ignore=.csv"
     puts yahoo_url
     historical_data = open yahoo_url
     historical =  CSV.parse(historical_data.read, headers: true )
+    binding.pry
     put(key: "#{ticker}_stock", value: current_value(historical))
     put(key: "#{ticker}_bidspread", value: current_spread(historical))
     put(key: "#{ticker}_stock_historical", value: historical_stock(historical))
