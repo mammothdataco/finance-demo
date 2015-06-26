@@ -37,7 +37,6 @@ class DataGrid
     puts yahoo_url
     historical_data = open yahoo_url
     historical =  CSV.parse(historical_data.read, headers: true )
-    binding.pry
     put(key: "#{ticker}_stock", value: current_value(historical))
     put(key: "#{ticker}_bidspread", value: current_spread(historical))
     put(key: "#{ticker}_stock_historical", value: historical_stock(historical))
