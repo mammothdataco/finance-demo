@@ -1,0 +1,118 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="stylesheet" href="./css/index.css" type="text/css" media="all">
+<link rel="stylesheet" href="./css/style.css" type="text/css" media="all">
+<link rel='stylesheet' id='x-font-custom-css'  href='http://fonts.googleapis.com/css?family=Raleway%3A400%2C400italic%2C700%2C700italic%7CJosefin+Sans%3A300%7CJosefin+Sans%3A300%7CJosefin+Sans%3A300&#038;subset=latin%2Clatin-ext&#038;ver=3.2.1' type='text/css' media='all' />
+<link rel="stylesheet" id="tp-josefinsans-css" href="http://fonts.googleapis.com/css?family=Josefin+Sans%3A100%2C200%2C300%2C400%2C500%2C600%2C700%2C800%2C900%2C1000&amp;ver=4.1.1" type="text/css" media="all">
+<link rel="stylesheet" id="tp-raleway-css" href="http://fonts.googleapis.com/css?family=Raleway%3A600%2C800%2C400%2C200&amp;ver=4.1.1" type="text/css" media="all">
+<script src="scripts/jquery-2.1.3.js"></script>
+<script src="scripts/monte.js"></script>
+</head>
+<body>
+<div id="headerlogo-container">
+<div id="headerlogos"></div>
+</div>
+<div id="content-headerbar"></div>
+<div id="content">
+  <h2>Problem Description</h2>
+  <p>After acquiring financial data from a number of external sources, we integrate Red Hat JBOSS Data Grid and Spark from Hortonworks Data Platform, performing a Monte Carlo simulation of the performance of multiple stocks over a one-day period and calculating the liquidity value at risk (LVaR) for the portfolio at a 95% confidence level.</p>
+  <table id="stocks">
+    <thead>
+      <tr>
+        <th>Company Name</th>
+        <th>Stock Ticker</th>
+        <th>Stock Price</th>
+        <th>Position (shares)</th>
+      </tr>
+    </thead>
+    <tbody>
+    <tr id="RHT" class="stock">
+      <td>RedHat</td>
+      <td class="ticker">RHT</td>
+      <td class="stock">0.00</td>
+      <td class="position" contentEditable>0</td>
+    </tr>
+    <tr id="HDP" class="stock">
+      <td>Hortonworks</td>
+      <td class="ticker">HDP</td>
+      <td class="stock">0.00</td>
+      <td class="position" contentEditable>0</td>
+    </tr>
+    <tr id="GOOG" class="stock">
+      <td>Google</td>
+      <td class="ticker">GOOG</td>
+      <td class="stock">0.0</td>
+      <td class="position" contentEditable>0</td>
+    </tr>
+
+    <tr id="GE" class="stock">
+      <td>General Electric</td>
+      <td class="ticker">GE</td>
+      <td class="stock">0.0</td>
+      <td class="position" contentEditable>0</td>
+    </tr>
+
+     <tr id="TWTR" class="stock">
+      <td>Twitter</td>
+      <td class="ticker">TWTR</td>
+      <td class="stock">0.0</td>
+      <td class="position" contentEditable>0</td>
+    </tr>
+
+
+     <tr id="AMZN" class="stock">
+      <td>Amazon</td>
+      <td class="ticker">AMZN</td>
+      <td class="stock">0.0</td>
+      <td class="position" contentEditable>0</td>
+    </tr>
+
+
+     <tr id="YHOO" class="stock">
+      <td>Yahoo</td>
+      <td class="ticker">YHOO</td>
+      <td class="stock">0.0</td>
+      <td class="position" contentEditable>0</td>
+    </tr>
+
+    <tr>
+      <td>Liquidity Risk of Portfolio (95% confidence Monte Carlo sim)</td>
+      <td id="liquidity"><button>Run Spark job…</button></td>
+      <td id="risk"></td>
+    </tr>
+
+    <tr>
+    <td>Add stock from ticker symbol</td>
+    <td id="symbol" contentEditable></td>
+    <td><button id="add">Add</button></td>
+    </tr>
+    </tbody>
+  </table>
+
+</div>
+</body>
+
+<footer class="x-colophon bottom" role="contentinfo" style="background-image: url(http://mammothdata.com/wp-content/uploads/2015/03/footer.png);">
+  <div class="x-container max width footer-container">
+    <div class="alignleft">
+      <div class="x-colophon-content">
+        Copyright © 2015 • Mammoth Data, Inc. • All rights reserved
+      </div>
+    </div><!-- /.alignleft -->
+
+    <div class="alignright">
+      <a href="http://mammothdata.com/" class="footer-logo" title="">
+        <img width="125" height="153" src="./images/footer-logo.png" class="attachment-full" alt="footer-logo">
+      </a>
+      <div class="footer-content">
+        <p><strong>Mammoth Data, Inc.</strong></p>
+        <p>345 West Main Street Suite 201</p>
+        <p>Durham, NC 27701 +1.919.321.0119</p>
+        <p><a href="mailto:info@mammothdata.com">info@mammothdata.com</a></p>
+      </div><!-- /.footer-content -->
+    </div><!-- /.alignright -->
+  </div>
+</footer>
+
+</html>

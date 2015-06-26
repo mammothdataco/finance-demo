@@ -1,0 +1,137 @@
+<html>
+  <head>
+<meta name="viewport" content="width=device-width">    <title>Monte Carlo Streaming</title>
+
+    <link rel="stylesheet" href="css/monte.css" type="text/css" media="all">
+    <script src="scripts/jquery-2.1.3.js"></script>
+    <script src="http://d3js.org/d3.v3.min.js"></script>
+    <script src="http://parsleyjs.org/dist/parsley.min.js"></script>
+
+<script src="scripts/monte.js"></script>
+  </head>
+  <body>
+    <div class="container">
+      <div class="logos">
+         <a href="http://mammothdata.com"><img src="images/mammothdata.logo.trans.png" width="203" height="56"></a>
+        </div>
+      <div class="title">
+        <div>LVaR DEMO</div>
+      </div>
+      <section class="submission">
+      <div class="intro"><p>Acquiring financial data from a number of external sources, we integrate Red Hat JBOSS Data Grid and Spark from Hortonworks Data Platform, with an interactive Monte Carlo simulation of the performance of multiple stocks over a one-day period and calculating the liquidity value at risk (LVaR) for the portfolio at a 95% confidence level. Pick your stocks, fill in your contact details, and see how much you have at risk!</p></div>
+         <table id="stocks">
+    <thead>
+      <tr>
+        <th>Company Name</th>
+        <th>Stock Ticker</th>
+        <th>Stock Price</th>
+        <th>Position (shares)</th>
+      </tr>
+    </thead>
+    <tbody>
+    <tr id="RHT" class="stock">
+      <td>RedHat</td>
+      <td class="ticker">RHT</td>
+      <td class="stock">0.00</td>
+      <td class="position-holder">
+      <input type=range min=0 max=1000 value=0 class="slider" step=1>
+      </td>
+      <td class='position'>0</td>
+    </tr>
+    <tr id="HDP" class="stock">
+      <td>Hortonworks</td>
+      <td class="ticker">HDP</td>
+      <td class="stock">0.00</td>
+      <td class="position-holder">
+      <input type=range min=0 max=1000 value=0 class="slider" step=1></td>
+      <td class='position'>0</td>
+    </tr>
+    <tr id="GOOG" class="stock">
+      <td>Google</td>
+      <td class="ticker">GOOG</td>
+      <td class="stock">0.0</td>
+      <td class="position-holder">
+      <input type=range min=0 max=1000 value=0 class="slider" step=1></td>
+      <td class='position'>0</td>
+    </tr>
+
+    <tr id="GE" class="stock">
+      <td>General Electric</td>
+      <td class="ticker">GE</td>
+      <td class="stock">0.0</td>
+      <td class="position-holder">
+      <input type=range min=0 max=1000 value=0 class="slider" step=1></td>
+      <td class='position'>0</td>
+    </tr>
+
+     <tr id="TWTR" class="stock">
+      <td>Twitter</td>
+      <td class="ticker">TWTR</td>
+      <td class="stock">0.0</td>
+      <td class="position-holder">
+      <input type=range min=0 max=1000 value=0 class="slider" step=1></td>
+      <td class='position'>0</td>
+    </tr>
+
+
+     <tr id="AMZN" class="stock">
+      <td>Amazon</td>
+      <td class="ticker">AMZN</td>
+      <td class="stock">0.0</td>
+      <td class="position-holder">
+      <input type=range min=0 max=1000 value=0 class="slider" step=1></td>
+      <td class='position'>0</td>
+    </tr>
+
+
+     <tr id="YHOO" class="stock">
+      <td>Yahoo</td>
+      <td class="ticker">YHOO</td>
+      <td class="stock">0.0</td>
+      <td class="position-holder">
+      <input type=range min=0 max=1000 value=0 class="slider" step=1></td>
+      <td class='position'>0</td>
+    </tr>
+
+    <tr>
+    <td></td>
+      <td>Total Position:</td>
+      
+      <td id="risk">$<span id="total-position"></span></td>
+    </tr>
+
+    <tr>
+    <td>Add stock from ticker symbol</td>
+    <td id="symbol" contentEditable></td>
+    <td><button id="add">Add</button></td>
+    </tr>
+    </tbody>
+  </table>
+      <form id="contacts">
+      <label for='email'>Email</label>
+      <input type='email' name='email' required data-parsley-required-message="Please enter a valid email address">
+      
+      <label for='name'>Name</label>
+      <input type='text' name='name' required data-parsley-required-message="Please enter your name">
+      
+      <label for='position'>Position</label>
+      <input type='text' name='position'>
+
+      <label for='company'>Company</label>
+      <input type='text' name='company' required data-parsley-required-message="Please enter your company">
+      
+      <label for='phone'>Phone</label>
+      <input type='text' name='phone' pattern="^[\d\+\-\.\(\)\/\s]*$" required data-parsley-required-message="Please enter a valid phone number">
+
+      </form>
+      
+      <button id="liquidity">Run LVaR simulation</button>
+      </section>
+      <section class="results">
+        <h2>Generating Simulation...</h2>
+        <div id="simulation-graph"></div>
+        <div id="lvar"></div>
+      </section>
+    </div>
+  </body>
+</html>

@@ -19,7 +19,7 @@ import Array._
 
 object LiquidityRiskMonteCarloStreaming extends java.io.Serializable {
 
-  val conf = new SparkConf()
+  val conf = new SparkConf().setAppName("Streaming Monte Carlo").setMaster("local[4]")
   val sc = new SparkContext(conf)
   val TRIALS = 1000
 
@@ -78,15 +78,6 @@ object LiquidityRiskMonteCarloStreaming extends java.io.Serializable {
     combined
   }
 
-   // Get the ticker symbols from the DataGrid
-
-  def tickerSymbolsToSimulate: List[String] = {
-    val req = url(datagridURL + "stocklist").as_!("datagrid", "RedHatDemo$2")
-    val result = (Http(req OK as.String))
-    result().split(",").toList
-  }
-
-
   def runSimulation(parameters: Submission) {
   
     val tickers = parameters.tickers
@@ -109,20 +100,27 @@ object LiquidityRiskMonteCarloStreaming extends java.io.Serializable {
     // // Again, this is why we'd split on trial instead of stock symbol
     // // outside of a demo implementation
 
-    // val combinedLVaRs = trialResults.map( stock => stock.sorted ).reduce( (x,y) => reduceFn(x,y))
+    val combinedLVaRs = trialResults.map( stock => stock.sorted ).reduce( (x,y) => reduceFn(x,y))
 
     val liquidityReq = url(datagridURL + uuid + "_liquidityrisk").PUT
                           .as_!("datagrid", "RedHatDemo$2")
                           .setBody(lvarOfPortfolio.toString)
     (Http(liquidityReq OK as.String))                            
 
+    val dataPoints = url(datagridURL + uuid + "_datapoints").PUT
+                          .as_!("datagrid", "RedHatDemo$2")
+                          .setBody(combinedLVaRs.mkString(","))
+    (Http(dataPoints OK as.String))
+
   }
 
    def main(args: Array[String]) {
     
     val ssc = new StreamingContext(sc, Seconds(1))
+    //val lines = KafkaUtils.createStream(ssc, "localhost", "0", Map("submissions" ->  1))
     val lines = KafkaUtils.createStream(ssc, "localhost", "0", Map("submissions" ->  1)).map(_._2)
-    val test = lines.foreachRDD(x => x.foreach(json => {  
+    println(lines)
+     val test = lines.foreachRDD(x => x.foreach(json => {  
         runSimulation(JsonMethods.parse(json).extract[Submission])
       }))
     ssc.start()
